@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import FoodSearch from './components/FoodSearch';
 import DidacticMatrix from './components/DidacticMatrix';
-import EnzymeAnimation from './components/EnzymeAnimation';
 import DigestiveTimeline from './components/DigestiveTimeline';
 import { FoodItem } from './types';
-import { ArrowDown, Beaker, Apple, Activity, BookOpen } from 'lucide-react';
+import { Activity } from 'lucide-react';
 
 export default function App() {
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
@@ -58,31 +57,18 @@ export default function App() {
               <span className="w-1 h-3 bg-emerald-500 rounded-full"></span> 2. O Trato Gastrointestinal
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
-              Acompanhe o caminho percorrido pelo bolo alimentar. 
+              Acompanhe o caminho percorrido pelo bolo alimentar e inicie os simuladores em cada órgão. 
               {selectedFood ? <span className="text-emerald-400 font-bold ml-1">[{selectedFood.name} INTEGRADO]</span> : ''}
             </p>
           </div>
           <DigestiveTimeline food={selectedFood} />
         </section>
 
-        {/* Seção 3: Animação Web */}
-        <section>
-          <div className="text-left mb-6">
-            <h2 className="text-xs font-bold text-red-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-              <span className="w-1 h-3 bg-red-500 rounded-full"></span> 3. Biologia Celular em Ação
-            </h2>
-            <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
-              Clivagem de ligações peptídicas pela Pepsina.
-            </p>
-          </div>
-          <EnzymeAnimation />
-        </section>
-
-        {/* Seção 4: Matriz Didática */}
+        {/* Seção 3: Matriz Didática */}
         <section>
           <div className="text-left mb-6">
             <h2 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-2 flex items-center gap-2">
-              <span className="w-1 h-3 bg-amber-500 rounded-full"></span> 4. Matriz Bioquímica
+              <span className="w-1 h-3 bg-amber-500 rounded-full"></span> 3. Matriz Bioquímica
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
               Tabela resumo relacionando órgão, pH e enzimas.

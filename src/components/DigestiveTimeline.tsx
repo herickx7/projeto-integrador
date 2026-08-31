@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { digestiveOrgans } from '../data';
 import { FoodItem } from '../types';
+import OrganAnimation from './OrganAnimation';
 
 export default function DigestiveTimeline({ food }: { food: FoodItem | null }) {
   return (
@@ -27,10 +28,10 @@ export default function DigestiveTimeline({ food }: { food: FoodItem | null }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isEven ? 'md:flex-row-reverse' : ''}`}
+              className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-0 ${isEven ? 'md:flex-row-reverse' : ''}`}
             >
               {/* Ponto / "Bolo Alimentar" na Timeline */}
-              <div className="absolute left-6 md:left-1/2 w-6 h-6 rounded-full border border-blue-500 bg-[#0d1117] -translate-x-1/2 shadow-[0_0_10px_rgba(37,99,235,0.4)] z-10 flex items-center justify-center">
+              <div className="absolute left-6 md:left-1/2 w-6 h-6 rounded-full border border-blue-500 bg-[#0d1117] -translate-x-1/2 shadow-[0_0_10px_rgba(37,99,235,0.4)] z-20 flex items-center justify-center">
                 <motion.div 
                   className="w-2 h-2 bg-blue-400 rounded-full" 
                   animate={{ scale: [1, 1.4, 1] }}
@@ -39,7 +40,7 @@ export default function DigestiveTimeline({ food }: { food: FoodItem | null }) {
               </div>
 
               {/* Cartão de Conteúdo Biológico */}
-              <div className="w-full pl-16 md:pl-0 md:w-1/2">
+              <div className={`w-full pl-16 md:pl-0 md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'} z-10`}>
                 <div className={`p-6 rounded-2xl border ${organ.color.split(' ')[1]} bg-[#0d1117]/80 hover:bg-[#161b22] transition-all group`}>
                   
                   <div className="flex items-center gap-3 mb-6">
@@ -91,8 +92,10 @@ export default function DigestiveTimeline({ food }: { food: FoodItem | null }) {
                 </div>
               </div>
               
-              {/* Espaçador invisível para empurrar o layout alternado */}
-              <div className="hidden md:block w-1/2" />
+              {/* Organ Animation */}
+              <div className={`w-full pl-16 md:pl-0 md:w-1/2 ${isEven ? 'md:pr-12' : 'md:pl-12'} mt-2 md:mt-0 z-10`}>
+                 <OrganAnimation organId={organ.id} />
+              </div>
             </motion.div>
           );
         })}
