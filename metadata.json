@@ -1,0 +1,8 @@
+{
+  "name": "Digestão Interativa",
+  "description": "Uma jornada interativa pelo sistema digestório humano, explorando a fisiologia, enzimas e nutrição, com consumo de API externa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
