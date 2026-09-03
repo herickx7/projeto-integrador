@@ -1,3 +1,9 @@
+// ==========================================
+// Matriz Didática (Resumo Bioquímico).
+// Exibe uma tabela com o resumo dos órgãos, pH e enzimas 
+// para facilitar a revisão dos alunos.
+// ==========================================
+
 import { digestiveOrgans } from '../data';
 import { motion } from 'motion/react';
 

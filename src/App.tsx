@@ -7,9 +7,10 @@ import { FoodItem } from './types';
 import { Activity } from 'lucide-react';
 
 export default function App() {
+  // Estado que armazena o alimento selecionado pelo usuário na barra de pesquisa
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
 
-  // Variantes de animação para stagger
+  // Variantes de animação para fazer os elementos aparecerem em sequência (stagger)
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -18,6 +19,7 @@ export default function App() {
     }
   };
 
+  // Animação individual para cada seção do site subir suavemente
   const itemVariants = {
     hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
     show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: "easeOut" } }
@@ -25,10 +27,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#05070a] font-sans text-slate-300 selection:bg-blue-500/30 relative">
-      {/* Background global fx */}
+      {/* Background global com efeito de grade tecnológica */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] tech-grid z-0" />
       
-      {/* Hero Section */}
+      {/* Hero Section - O cabeçalho principal do site */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,24 +49,9 @@ export default function App() {
           </motion.div>
           <div className="text-left">
             <h1 className="text-xl font-bold text-white tracking-tight uppercase flex items-center gap-2">
-              Digestive.OS 
-              <span className="text-blue-500 text-xs font-mono opacity-70 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
-                v1.0.4 - Bio-Tech
-              </span>
+              Sistema Digestório - IFRN
             </h1>
             <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-0.5">Interface de Simulação Fisiológica & Nutricional</p>
-          </div>
-        </div>
-        <div className="hidden md:flex gap-8 relative z-10">
-          <div className="text-right">
-            <div className="text-[10px] text-slate-500 uppercase mb-1 tracking-widest">API Integration</div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs glow-text">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              IFRN_DB_CONNECTED
-            </div>
           </div>
         </div>
       </motion.header>
@@ -76,7 +63,7 @@ export default function App() {
         className="max-w-6xl mx-auto px-6 py-10 space-y-12 relative z-20"
       >
         
-        {/* Seção 1: API Integration */}
+        {/* Seção 1: Entrada do Alimento (Pesquisa) */}
         <motion.section variants={itemVariants} id="simulator">
           <div className="text-left mb-6 relative pl-4 border-l-2 border-blue-500/50">
             <h2 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1 flex items-center gap-2">
@@ -84,13 +71,13 @@ export default function App() {
               1. Input Nutricional
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
-              Consultamos a API Interna do IFRN. Pesquise um item servido (ex: "Cuscuz", "Frango").
+              Consulte as comidas disponíveis tradicionalmente no campus. Pesquise um item servido (ex: "Cuscuz", "Frango").
             </p>
           </div>
           <FoodSearch onSelect={setSelectedFood} />
         </motion.section>
 
-        {/* Seção 2: Scrollytelling / Timeline */}
+        {/* Seção 2: Linha do tempo interativa da digestão */}
         <motion.section variants={itemVariants}>
           <div className="text-left mb-6 relative pl-4 border-l-2 border-emerald-500/50">
             <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1 flex items-center gap-2">
@@ -105,7 +92,7 @@ export default function App() {
           <DigestiveTimeline food={selectedFood} />
         </motion.section>
 
-        {/* Seção 3: Matriz Didática */}
+        {/* Seção 3: Tabela de Resumo Bioquímico */}
         <motion.section variants={itemVariants}>
           <div className="text-left mb-6 relative pl-4 border-l-2 border-amber-500/50">
             <h2 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-1 flex items-center gap-2">
@@ -121,13 +108,11 @@ export default function App() {
 
       </motion.main>
 
-      <footer className="relative z-20 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono border-t border-slate-800/50 pt-6 mt-12 pb-6 px-6 mx-6">
-        <div>IFRN INTEGRATOR PROJECT // BIOLOGY + WEB DEV</div>
-        <div className="flex gap-4 mt-4 md:mt-0">
-          <span className="text-blue-500">REACT_TS: ENABLED</span>
-          <span>DATA_STREAM_ENCRYPTION: AES-256</span>
-          <span className="text-emerald-500">CORE_TEMP: 36.5°C</span>
-        </div>
+      {/* Rodapé com os créditos solicitados */}
+      <footer className="relative z-20 flex flex-col items-center text-center text-[10px] text-slate-500 font-mono border-t border-slate-800/50 pt-6 mt-12 pb-6 px-6 mx-6 gap-2">
+        <p className="text-slate-400">Desenvolvido por: Herick Davi Azevedo Gurgel de Moraes e Pedro Lucas Araujo Fernandes, da Turma Informática 3V.</p>
+        <p>IFRN Campus Ipanguaçu</p>
+        <p className="text-slate-400">Professores: Cinthya Cavalcanti Florio e Joaquim Bruno Cruz Neto</p>
       </footer>
     </div>
   );

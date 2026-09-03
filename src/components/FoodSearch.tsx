@@ -50,7 +50,7 @@ export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) =>
             type="text" 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Scan Alimento (ex: Cuscuz, Macaxeira)..."
+            placeholder="Buscar Alimento (ex: Cuscuz, Macaxeira)..."
             className="w-full pl-12 pr-4 py-3 bg-[#161b22] border border-slate-700 rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-white font-mono text-sm shadow-inner"
           />
         </div>
@@ -98,7 +98,7 @@ export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) =>
                 )}
                 <div className="flex-1 overflow-hidden">
                   <h4 className="font-mono text-sm text-white truncate group-hover:text-blue-400 glow-text">{food.name}</h4>
-                  <p className="text-[9px] text-slate-500 mt-1 uppercase tracking-widest group-hover:text-blue-300 transition-colors">Select to simulate</p>
+                  <p className="text-[9px] text-slate-500 mt-1 uppercase tracking-widest group-hover:text-blue-300 transition-colors">Selecionar para simular</p>
                 </div>
               </motion.button>
             ))}
@@ -124,13 +124,13 @@ export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) =>
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 gap-2">
                 <h3 className="text-xl font-mono text-white truncate glow-text" title={selected.name}>
                   {selected.name}
-                  <span className="ml-3 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded uppercase align-middle">Loaded</span>
+                  <span className="ml-3 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded uppercase align-middle">Carregado</span>
                 </h3>
                 <button 
                   onClick={() => setSelected(null)} 
                   className="text-[10px] font-mono uppercase tracking-widest text-blue-400 hover:text-white transition-colors bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/30 hover:bg-blue-500 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(37,99,235,0.6)]"
                 >
-                  [ RESET_INPUT ]
+                  [ REINICIAR_BUSCA ]
                 </button>
               </div>
               
@@ -151,7 +151,7 @@ export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) =>
                   <p className="text-lg md:text-xl font-mono text-amber-400">{selected.fat.toFixed(1)}g</p>
                 </div>
               </div>
-              <p className="text-[9px] text-slate-500 mt-4 text-center sm:text-right font-mono tracking-widest uppercase">BASE: 100G PORTION // SOURCE: IFRN_DB</p>
+              <p className="text-[9px] text-slate-500 mt-4 text-center sm:text-right font-mono tracking-widest uppercase">BASE: PORÇÃO 100G // FONTE: DB_IFRN</p>
             </div>
           </motion.div>
         )}

@@ -1,3 +1,9 @@
+// ==========================================
+// Arquivo de tipagem TypeScript (Interfaces).
+// Define a estrutura de dados para alimentos e órgãos,
+// garantindo a segurança de tipos (Type Safety).
+// ==========================================
+
 export interface FoodItem {
   id: string;
   name: string;
@@ -15,4 +21,9 @@ export interface OrganData {
   action: string;
   nutrition: string;
   color: string;
+  academicDetails?: {
+    cytology: string;
+    biochem: string;
+    endocrine: string;
+  };
 }
