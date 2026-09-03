@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import FoodSearch from './components/FoodSearch';
 import DidacticMatrix from './components/DidacticMatrix';
 import DigestiveTimeline from './components/DigestiveTimeline';
@@ -8,78 +9,119 @@ import { Activity } from 'lucide-react';
 export default function App() {
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
 
+  // Variantes de animação para stagger
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
-    <div className="min-h-screen bg-[#05070a] font-sans text-slate-300 selection:bg-blue-500/30">
+    <div className="min-h-screen bg-[#05070a] font-sans text-slate-300 selection:bg-blue-500/30 relative">
+      {/* Background global fx */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] tech-grid z-0" />
       
       {/* Hero Section */}
-      <header className="flex justify-between items-center bg-[#0d1117] border border-blue-500/30 rounded-2xl px-6 py-4 mx-6 mt-6 shadow-[0_0_20px_rgba(37,99,235,0.1)]">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+      <motion.header 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 flex justify-between items-center bg-[#0d1117]/80 backdrop-blur-md border border-blue-500/30 rounded-2xl px-6 py-4 mx-6 mt-6 shadow-[0_0_30px_rgba(37,99,235,0.15)] overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50" />
+        
+        <div className="flex items-center gap-4 relative z-10">
+          <motion.div 
+            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(37,99,235,0.6)" }}
+            className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)] cursor-default transition-shadow"
+          >
             <Activity className="w-6 h-6 text-white" />
-          </div>
+          </motion.div>
           <div className="text-left">
-            <h1 className="text-xl font-bold text-white tracking-tight uppercase">
-              Digestive.OS <span className="text-blue-500 text-xs ml-2 font-mono opacity-70">v1.0.4 - Bio-Tech Project</span>
+            <h1 className="text-xl font-bold text-white tracking-tight uppercase flex items-center gap-2">
+              Digestive.OS 
+              <span className="text-blue-500 text-xs font-mono opacity-70 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                v1.0.4 - Bio-Tech
+              </span>
             </h1>
-            <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Interface de Simulação Fisiológica & Nutricional</p>
+            <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mt-0.5">Interface de Simulação Fisiológica & Nutricional</p>
           </div>
         </div>
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 relative z-10">
           <div className="text-right">
-            <div className="text-[10px] text-slate-500 uppercase mb-1">API Integration</div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <div className="text-[10px] text-slate-500 uppercase mb-1 tracking-widest">API Integration</div>
+            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs glow-text">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               IFRN_DB_CONNECTED
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      <main className="max-w-6xl mx-auto px-6 py-10 space-y-10 relative z-20">
+      <motion.main 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="max-w-6xl mx-auto px-6 py-10 space-y-12 relative z-20"
+      >
         
         {/* Seção 1: API Integration */}
-        <section id="simulator">
-          <div className="text-left mb-6">
-            <h2 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-              <span className="w-1 h-3 bg-blue-500 rounded-full"></span> 1. Input Nutricional
+        <motion.section variants={itemVariants} id="simulator">
+          <div className="text-left mb-6 relative pl-4 border-l-2 border-blue-500/50">
+            <h2 className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1 flex items-center gap-2">
+              <span className="w-2 h-2 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] rounded-sm"></span> 
+              1. Input Nutricional
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
               Consultamos a API Interna do IFRN. Pesquise um item servido (ex: "Cuscuz", "Frango").
             </p>
           </div>
           <FoodSearch onSelect={setSelectedFood} />
-        </section>
+        </motion.section>
 
         {/* Seção 2: Scrollytelling / Timeline */}
-        <section>
-          <div className="text-left mb-6">
-            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-              <span className="w-1 h-3 bg-emerald-500 rounded-full"></span> 2. O Trato Gastrointestinal
+        <motion.section variants={itemVariants}>
+          <div className="text-left mb-6 relative pl-4 border-l-2 border-emerald-500/50">
+            <h2 className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1 flex items-center gap-2">
+              <span className="w-2 h-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] rounded-sm"></span> 
+              2. O Trato Gastrointestinal
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
               Acompanhe o caminho percorrido pelo bolo alimentar e inicie os simuladores em cada órgão. 
-              {selectedFood ? <span className="text-emerald-400 font-bold ml-1">[{selectedFood.name} INTEGRADO]</span> : ''}
+              {selectedFood ? <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-emerald-400 font-bold ml-1">[{selectedFood.name} INTEGRADO]</motion.span> : ''}
             </p>
           </div>
           <DigestiveTimeline food={selectedFood} />
-        </section>
+        </motion.section>
 
         {/* Seção 3: Matriz Didática */}
-        <section>
-          <div className="text-left mb-6">
-            <h2 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-2 flex items-center gap-2">
-              <span className="w-1 h-3 bg-amber-500 rounded-full"></span> 3. Matriz Bioquímica
+        <motion.section variants={itemVariants}>
+          <div className="text-left mb-6 relative pl-4 border-l-2 border-amber-500/50">
+            <h2 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-1 flex items-center gap-2">
+              <span className="w-2 h-2 bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)] rounded-sm"></span> 
+              3. Matriz Bioquímica
             </h2>
             <p className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">
               Tabela resumo relacionando órgão, pH e enzimas.
             </p>
           </div>
           <DidacticMatrix />
-        </section>
+        </motion.section>
 
-      </main>
+      </motion.main>
 
-      <footer className="flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono border-t border-slate-800/50 pt-6 mt-12 pb-6 px-6 mx-6">
+      <footer className="relative z-20 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono border-t border-slate-800/50 pt-6 mt-12 pb-6 px-6 mx-6">
         <div>IFRN INTEGRATOR PROJECT // BIOLOGY + WEB DEV</div>
         <div className="flex gap-4 mt-4 md:mt-0">
           <span className="text-blue-500">REACT_TS: ENABLED</span>
