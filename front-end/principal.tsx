@@ -1,7 +1,7 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import Aplicativo from './Aplicativo.tsx';
+import './estilo.css';
 
 const signature = `
  _   _  _____  
@@ -18,6 +18,6 @@ console.log('%c' + signature, 'color: #3b82f6; font-weight: bold; font-family: m
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <Aplicativo />
   </StrictMode>,
 );

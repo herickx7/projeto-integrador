@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Loader2 } from 'lucide-react';
-import { searchFood } from '../lib/api';
-import { FoodItem } from '../types';
+import { searchFood } from '../biblioteca/api';
+import { FoodItem } from '../tipos';
 
 export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) => void }) {
   const [query, setQuery] = useState('');

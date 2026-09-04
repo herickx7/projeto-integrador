@@ -4,7 +4,7 @@
 // da matriz didática e da linha do tempo.
 // ==========================================
 
-import { OrganData } from './types';
+import { OrganData } from './tipos';
 
 export const digestiveOrgans: OrganData[] = [
   {

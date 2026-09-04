@@ -4,7 +4,7 @@
 // para facilitar a revisão dos alunos.
 // ==========================================
 
-import { digestiveOrgans } from '../data';
+import { digestiveOrgans } from '../dados';
 import { motion } from 'motion/react';
 
 export default function DidacticMatrix() {

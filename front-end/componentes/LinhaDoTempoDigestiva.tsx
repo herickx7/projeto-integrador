@@ -6,9 +6,9 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { digestiveOrgans } from '../data';
-import { FoodItem, OrganData } from '../types';
-import OrganAnimation from './OrganAnimation';
+import { digestiveOrgans } from '../dados';
+import { FoodItem, OrganData } from '../tipos';
+import AnimacaoOrgao from './AnimacaoOrgao';
 import { Microscope, Dna, Activity, FileText, ChevronDown, ChevronUp } from 'lucide-react';
 
 function OrganCard({ organ, food, expanded, setExpanded, activeTab, setActiveTab }: { organ: OrganData, food: FoodItem | null, expanded: boolean, setExpanded: (v: boolean) => void, activeTab: 'overview' | 'cytology' | 'biochem' | 'endocrine', setActiveTab: (v: any) => void }) {
@@ -185,7 +185,7 @@ function OrganRow({ organ, food, isEven }: { organ: OrganData, food: FoodItem | 
       </div>
       
       <div className={`w-full pl-16 md:pl-0 md:w-1/2 ${isEven ? 'md:pr-12' : 'md:pl-12'} mt-2 md:mt-0 z-10`}>
-         <OrganAnimation organId={organ.id} activeTab={expanded ? activeTab : 'overview'} />
+         <AnimacaoOrgao organId={organ.id} activeTab={expanded ? activeTab : 'overview'} />
       </div>
     </motion.div>
   );

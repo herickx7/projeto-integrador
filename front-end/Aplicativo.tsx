@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import FoodSearch from './components/FoodSearch';
-import DidacticMatrix from './components/DidacticMatrix';
-import DigestiveTimeline from './components/DigestiveTimeline';
-import { FoodItem } from './types';
+import PesquisaAlimento from './componentes/PesquisaAlimento';
+import MatrizDidatica from './componentes/MatrizDidatica';
+import LinhaDoTempoDigestiva from './componentes/LinhaDoTempoDigestiva';
+import { FoodItem } from './tipos';
 import { Activity } from 'lucide-react';
 
 export default function App() {
@@ -74,7 +74,7 @@ export default function App() {
               Consulte as comidas disponíveis tradicionalmente no campus. Pesquise um item servido (ex: "Cuscuz", "Frango").
             </p>
           </div>
-          <FoodSearch onSelect={setSelectedFood} />
+          <PesquisaAlimento onSelect={setSelectedFood} />
         </motion.section>
 
         {/* Seção 2: Linha do tempo interativa da digestão */}
@@ -89,7 +89,7 @@ export default function App() {
               {selectedFood ? <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-emerald-400 font-bold ml-1">[{selectedFood.name} INTEGRADO]</motion.span> : ''}
             </p>
           </div>
-          <DigestiveTimeline food={selectedFood} />
+          <LinhaDoTempoDigestiva food={selectedFood} />
         </motion.section>
 
         {/* Seção 3: Tabela de Resumo Bioquímico */}
@@ -103,7 +103,7 @@ export default function App() {
               Tabela resumo relacionando órgão, pH e enzimas.
             </p>
           </div>
-          <DidacticMatrix />
+          <MatrizDidatica />
         </motion.section>
 
       </motion.main>
