@@ -1,15 +1,15 @@
 import { FoodItem } from '../tipos';
 
-// ==========================================
-// API Real (Consumindo backend Node.js + MySQL)
-// A função conecta-se à rota criada na pasta back-end/
-// ==========================================
+// ===============================
+// api pegando la do nosso back-end
+// conecta direto na rota do servidor
+// ===============================
 export async function searchFood(query: string): Promise<FoodItem[]> {
   try {
     const response = await fetch(`/api/alimentos?q=${encodeURIComponent(query)}`);
     const data = await response.json();
     
-    // Imprimindo log de processamento no Console (F12) como a professora pediu
+    // printando o log no console igual a prof pediu
     if (data.logs) {
       console.log("%c=== PROCESSAMENTO DA API NO BACK-END ===", "color: #3b82f6; font-weight: bold; font-size: 14px;");
       data.logs.forEach((log: string) => {

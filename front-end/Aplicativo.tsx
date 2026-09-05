@@ -7,10 +7,10 @@ import { FoodItem } from './tipos';
 import { Activity } from 'lucide-react';
 
 export default function App() {
-  // Estado que armazena o alimento selecionado pelo usuário na barra de pesquisa
+  // guarda o alimento que pesquisaram
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
 
-  // Variantes de animação para fazer os elementos aparecerem em sequência (stagger)
+  // animacaozinha em sequencia
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -19,7 +19,7 @@ export default function App() {
     }
   };
 
-  // Animação individual para cada seção do site subir suavemente
+  // animacao de subir a secao
   const itemVariants = {
     hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
     show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: "easeOut" } }

@@ -3,14 +3,14 @@ import path from "path";
 import { createServer as createViteServer } from "vite";
 import { fileURLToPath } from "url";
 
-// Importações do Firebase SDK (versão 9+ modular)
+// importando sdk do firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, setDoc } from "firebase/firestore";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 1. Configuração do Firebase fornecida
+// config do firebase que peguei la
 const firebaseConfig = {
   apiKey: "AIzaSyDcAcfbTtrwBUwWFWbAesi4nEpXUYxu2fY",
   authDomain: "projeto-integrador-ifrn.firebaseapp.com",
@@ -21,11 +21,11 @@ const firebaseConfig = {
   measurementId: "G-NC7RFLG0ME"
 };
 
-// 2. Inicializando o App e o Banco de Dados Firestore
+// iniciando o app e o firestore
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
-// 3. Função para popular o Firebase na primeira execução (Seed)
+// funcao pra jogar os dados no banco se tiver vazio
 async function popularBancoSeEstiverVazio() {
   try {
     const alimentosRef = collection(db, "alimentos");
@@ -51,7 +51,7 @@ async function popularBancoSeEstiverVazio() {
       ];
 
       for (const food of ifrnMenu) {
-        // Cria um documento com o ID especificado
+        // cria os docs com id certo
         await setDoc(doc(db, "alimentos", food.id), food);
       }
       console.log("[FIREBASE] Cardápio inserido no Firestore com sucesso!");
@@ -63,14 +63,14 @@ async function popularBancoSeEstiverVazio() {
   }
 }
 
-// Executa a verificação assim que o servidor liga
+// roda isso assim q o server ligar
 popularBancoSeEstiverVazio();
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Endpoint da API real
+  // nossa rota principal da api
   app.get("/api/alimentos", async (req, res) => {
     const query = (req.query.q as string) || "";
     
@@ -81,7 +81,7 @@ async function startServer() {
     ];
     
     try {
-      // Busca todos os documentos da coleção "alimentos"
+      // pega todos os documentos de alimentos
       const snapshot = await getDocs(collection(db, "alimentos"));
       let resultados: any[] = [];
       
@@ -91,8 +91,8 @@ async function startServer() {
       
       logProcessamento.push(`[BACK-END] 📦 Foram lidos ${resultados.length} documentos do Firebase.`);
       
-      // Filtragem textual feita pelo processamento do nosso Back-End
-      // (O Firestore não possui busca "LIKE" nativa, então filtramos no servidor - ótimo para o TCC!)
+      // filtrando a busca por aqui mesmo no back-end
+      // (o firestore nao tem aquele 'like' do sql, entao o filtro rola aqui - fica massa pro tcc)
       if (query) {
         const queryMinuscula = query.toLowerCase();
         resultados = resultados.filter(item => item.name.toLowerCase().includes(queryMinuscula));
@@ -112,7 +112,7 @@ async function startServer() {
     }
   });
 
-  // Vite middleware for development (Front-End)
+  // middleware do vite pra rodar o front junto
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

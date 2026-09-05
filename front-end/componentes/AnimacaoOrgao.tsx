@@ -1,8 +1,8 @@
-// ==========================================
-// Componente responsável por todas as animações interativas 
-// dos órgãos e processos digestivos.
-// Utiliza Framer Motion para efeitos fluídos.
-// ==========================================
+// ===============================
+// componente q cuida das animacoes
+// dos orgaos e digestao
+// usando framer motion pra ficar suave
+// ===============================
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -32,7 +32,7 @@ const SimBase = ({ onClick, active, icon: Icon, text, color, children }: any) =>
   );
 }
 
-// =================== MOUTH ===================
+// =================== boca ===================
 const MouthOverview = () => {
   const [a, setA] = useState(false);
   return (
@@ -89,7 +89,7 @@ const MouthEndocrine = () => {
   )
 }
 
-// =================== STOMACH ===================
+// =================== estomago ===================
 const StomachOverview = () => {
   const [a, setA] = useState(false);
   return (
@@ -154,7 +154,7 @@ const StomachEndocrine = () => {
   )
 }
 
-// =================== LIVER & PÂNCREAS ===================
+// =================== figado e pancreas ===================
 const LiverOverview = () => {
   const [a, setA] = useState(false);
   return (
@@ -224,7 +224,7 @@ const LiverEndocrine = () => {
   )
 }
 
-// =================== SMALL INTESTINE ===================
+// =================== intestino delgado ===================
 const SmallIntestineOverview = () => {
   const [absorbed, setAbsorbed] = useState<number[]>([]);
   const handleAbsorb = (i: number, e: React.MouseEvent) => { e.stopPropagation(); if (!absorbed.includes(i)) setAbsorbed([...absorbed, i]); }
@@ -289,7 +289,7 @@ const SmallIntestineEndocrine = () => {
   )
 }
 
-// =================== LARGE INTESTINE ===================
+// =================== intestino grosso ===================
 const LargeIntestineOverview = () => {
   const [clicks, setClicks] = useState(0);
   const maxClicks = 6;
@@ -356,7 +356,7 @@ const LargeIntestineEndocrine = () => {
 export default function OrganAnimation({ organId, activeTab = 'overview' }: { organId: string, activeTab?: string }) {
   const [resetKey, setResetKey] = useState(0);
 
-  // Force reset when tab changes
+  // forca o reset trocando de aba
   useEffect(() => setResetKey(k => k+1), [activeTab, organId]);
 
   const components: any = {

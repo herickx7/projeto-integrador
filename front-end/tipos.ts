@@ -1,8 +1,8 @@
-// ==========================================
-// Arquivo de tipagem TypeScript (Interfaces).
-// Define a estrutura de dados para alimentos e órgãos,
-// garantindo a segurança de tipos (Type Safety).
-// ==========================================
+// ===============================
+// arquivo com as tipagens
+// moldes pros alimentos e orgaos
+// pra ninguem baguncar os tipos
+// ===============================
 
 export interface FoodItem {
   id: string;

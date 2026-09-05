@@ -1,8 +1,8 @@
-// ==========================================
-// Linha do tempo interativa da digestão.
-// Renderiza cada órgão sequencialmente e permite ao usuário 
-// expandir detalhes nutricionais, citológicos, etc.
-// ==========================================
+// ===============================
+// linha do tempo da digestao
+// vai mostrando os orgaos na ordem
+// e da pra abrir os detalhes
+// ===============================
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';

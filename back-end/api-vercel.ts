@@ -10,7 +10,7 @@ const firebaseConfig = {
   messagingSenderId: "816598368591",
   appId: "1:816598368591:web:a2d97454614d3e7022c53a",
   measurementId: "G-NC7RFLG0ME"
-};
+}; // opcional> dps jogar essa apiKey numa env
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
@@ -55,5 +55,5 @@ app.get("/api/alimentos", async (req, res) => {
   }
 });
 
-// Exporta o app do Express para o Vercel Serverless
+// exportando o express pro vercel
 export default app;

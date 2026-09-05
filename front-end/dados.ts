@@ -1,8 +1,8 @@
-// ==========================================
-// Base de dados local com as informações teóricas
-// dos órgãos do sistema digestório. Contém os textos
-// da matriz didática e da linha do tempo.
-// ==========================================
+// ===============================
+// banco de dados local com a parte teorica
+// dos orgaos. tem os textos da matriz
+// e da timeline
+// ===============================
 
 import { OrganData } from './tipos';
 

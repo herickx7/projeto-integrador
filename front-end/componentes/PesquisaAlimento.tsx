@@ -17,7 +17,7 @@ export default function FoodSearch({ onSelect }: { onSelect: (food: FoodItem) =>
     
     setLoading(true);
     setError('');
-    setSelected(null); // Reseta seleção anterior
+    setSelected(null); // zera o que tava selecionado
 
     try {
       const data = await searchFood(query);
