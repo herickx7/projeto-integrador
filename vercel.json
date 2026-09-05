@@ -19,6 +19,9 @@
       "dest": "/back-end/api-vercel.ts"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
